@@ -2,7 +2,6 @@
 
 using Test, ASE, NeighbourLists
 using LinearAlgebra: norm
-include("aux.jl")
 
 h1("Misc ASE Tests")
 
@@ -123,11 +122,10 @@ at2 = read_xyz(fname)
 println(@test positions(at) == positions(at2))
 rm(fname)
 
-
-
 # ---------
 h3("Conversion between JuLIP.Atoms and ASEAtoms")
 at1 = bulk(:Si)          # JuLIP.Atoms
 at2 = ASEAtoms(at1)      # ASE.ASEAtoms
+@show cell(at2)
 at3 = Atoms(at2)         # JuLIP.Atoms
 println(@test at1 == at3)
